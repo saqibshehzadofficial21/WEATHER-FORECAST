@@ -1,0 +1,168 @@
+:root{
+  --bg-1: #07182b; /* deep navy */
+  --bg-2: #0e3650; /* cool blue */
+  --accent: #f6c34f; /* warm yellow */
+  --card-glass: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.06);
+  --text: #e6f0ff;
+  --muted: rgba(230,240,255,0.6);
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(18,90,140,0.14), transparent 12%),
+              radial-gradient(900px 500px at 90% 80%, rgba(246,195,79,0.06), transparent 10%),
+              linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  background-attachment: fixed;
+  padding:28px;
+  overflow-x:hidden;
+}
+
+/* Light theme overrides */
+:root[data-theme="light"], [data-theme="light"]{
+  --bg-1: #f7fafc;
+  --bg-2: #e9f2f8;
+  --accent: #ffb547;
+  --card-glass: rgba(0,0,0,0.03);
+  --card-border: rgba(0,0,0,0.06);
+  --text: #0b2330;
+  --muted: rgba(11,35,48,0.6);
+}
+
+/* subtle animated color shift */
+@keyframes gradientShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  left:0;right:0;top:0;bottom:0;
+  pointer-events:none;
+  background:linear-gradient(90deg, rgba(255,255,255,0.00) 0%, rgba(255,255,255,0.01) 50%, rgba(0,0,0,0.02) 100%);
+  mix-blend-mode:overlay;
+  opacity:0.6;
+}
+
+.app{
+  max-width:1100px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+
+header h1{margin:0 0 14px;font-weight:600;letter-spacing:0.2px}
+
+.city-form{display:flex;gap:8px;margin-bottom:14px}
+.city-form input{flex:1;padding:10px;border-radius:10px;border:1px solid var(--card-border);background:rgba(255,255,255,0.02);color:var(--text)}
+.city-form button{padding:10px 12px;border-radius:10px;border:none;background:var(--accent);color:#07182b;font-weight:600}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  padding:18px;
+  border-radius:14px;
+  box-shadow:0 10px 30px rgba(2,6,23,0.6);
+  border:1px solid var(--card-border);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* Hero card layout */
+.hero-card{padding:18px}
+.hero-grid{display:grid;grid-template-columns:160px 1fr 140px;gap:18px;align-items:center}
+.weather-visual{width:160px;height:120px;display:flex;align-items:center;justify-content:center}
+.visual-3d{border-radius:12px;transform:rotateX(12deg) rotateY(-10deg);box-shadow:0 20px 40px rgba(2,6,23,0.6);position:relative}
+.visual-inner{width:90%;height:70%;border-radius:10px;position:relative}
+
+.weather-img{width:72px;height:72px;display:block}
+
+/* weather variants */
+.visual-3d.clear .visual-inner{background: radial-gradient(circle at 30% 30%, #ffd166 0%, #ff9f1c 35%, transparent 60%)}
+.visual-3d.partly .visual-inner{background:linear-gradient(180deg,#ffe6a7,#ffd9a0);}
+.visual-3d.cloudy .visual-inner{background:linear-gradient(180deg,#cfd8e3,#9fb3c8)}
+.visual-3d.drizzle .visual-inner{background:linear-gradient(180deg,#9fd3eb,#6fb3d6)}
+.visual-3d.showers .visual-inner{background:linear-gradient(180deg,#7fc8e3,#4aa7d6)}
+.visual-3d.snow .visual-inner{background:linear-gradient(180deg,#eaf6ff,#cfeffd)}
+.visual-3d.thunder .visual-inner{background:linear-gradient(180deg,#ffd6a5,#ff9f1c)}
+
+.hero-info .city-name{margin:0;font-size:1.25rem}
+.hero-temp{display:flex;align-items:center;gap:12px}
+.hero-temp .temp{font-size:2.6rem}
+.hero-meta{color:var(--muted);margin-top:6px;display:flex;gap:12px}
+.hl{font-weight:600}
+
+.hero-actions{display:none}
+
+/* interactive buttons and city buttons */
+.city-buttons button{transition:transform 200ms ease, box-shadow 200ms ease}
+.city-buttons button:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(2,6,23,0.5)}
+.unit-select label{transition:transform 160ms ease, box-shadow 160ms ease}
+.unit-select label:hover{transform:translateY(-3px);box-shadow:0 6px 14px rgba(2,6,23,0.35)}
+
+
+.temp{font-size:2.4rem;font-weight:700;margin:6px 0}
+.desc{color:var(--muted);margin-bottom:6px}
+.status{margin-bottom:10px}
+.loading{color:var(--accent)}
+
+/* small helper for map/hero card style */
+.hero-card{overflow:hidden;border-radius:12px}
+
+/* responsive */
+@media (max-width:720px){
+  body{padding:14px}
+  .temp{font-size:1.8rem}
+}
+
+/* Accent dot used for notifications */
+.badge-accent{background:var(--accent);color:#07182b;padding:6px 10px;border-radius:999px;font-weight:600}
+
+/* Forecast strip */
+.forecast-strip{display:flex;gap:12px;margin-top:14px}
+.day-tile{width:120px;min-width:100px;padding:14px;text-align:center;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:inset 0 -6px 0 rgba(0,0,0,0.04)}
+.day-tile.today{border:2px solid var(--accent);box-shadow:0 8px 24px rgba(2,6,23,0.45)}
+.dt-header{font-size:0.85rem;color:var(--muted);margin-bottom:8px}
+.dt-icon{margin-bottom:8px;display:flex;justify-content:center}
+.dt-temp{font-size:1rem}
+.muted{color:var(--muted)}
+
+/* Hourly chart */
+.hourly-chart{margin-top:16px;padding:0}
+.hourly-chart svg{width:100%;height:120px;display:block}
+
+.controls{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
+.unit-select label{margin-right:8px;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.02);cursor:pointer}
+.unit-select label.active{background:var(--accent);color:#07182b}
+
+.city-buttons{display:inline-flex;gap:8px;margin-left:12px}
+.city-buttons button{padding:6px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);cursor:pointer}
+
+/* Continent / Pakistan overview */
+.continent-view{margin-top:18px;padding:14px}
+.continent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;perspective:800px}
+.continent-tile{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 10px 30px rgba(2,6,23,0.5);transform-style:preserve-3d;transition:transform 380ms cubic-bezier(.2,.9,.2,1)}
+.continent-tile:hover{transform:translateZ(60px) translateY(-10px) scale(1.02)}
+.ct-name{font-weight:600}
+.ct-temp{font-size:1.1rem;margin-top:8px}
+
+.refresh-btn{padding:6px 10px;border-radius:8px;border:none;background:var(--accent);color:#07182b;font-weight:600;cursor:pointer}
+
+/* History card */
+/* history card removed (bottom history UI was removed) */
+
+
+/* Chart fade/transition */
+.hourly-chart .chart-line{transition:opacity 480ms ease}
+.hourly-chart .chart-area{transition:opacity 480ms ease}
+
+/* smooth line draw (stroke animation handled inline) */
+.chart-line{filter:drop-shadow(0 6px 12px rgba(11,35,48,0.45))}
+
+
