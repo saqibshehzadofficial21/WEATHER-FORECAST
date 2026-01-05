@@ -116,9 +116,84 @@ header h1{margin:0 0 14px;font-weight:600;letter-spacing:0.2px}
 .hero-card{overflow:hidden;border-radius:12px}
 
 /* responsive */
-@media (max-width:720px){
+@media (max-width:768px){
   body{padding:14px}
+  .app{max-width:100%;margin:0}
+  .temp{font-size:2.2rem}
+  .hero-temp .temp{font-size:2.2rem}
+  .hero-grid{grid-template-columns:1fr;gap:16px;text-align:center}
+  .weather-visual{width:120px;height:100px;margin:0 auto}
+  .hero-info{text-align:center}
+  .hero-meta{justify-content:center}
+  .forecast-strip{overflow-x:auto;padding-bottom:8px}
+  .forecast-strip::-webkit-scrollbar{display:none}
+  .day-tile{min-width:100px}
+  .city-form{flex-direction:column;gap:12px}
+  .city-buttons{flex-wrap:wrap;justify-content:center}
+  .city-buttons button{padding:8px 12px;font-size:0.9rem}
+  .controls{flex-direction:column;gap:12px;align-items:flex-start}
+  .unit-select{display:flex;justify-content:center}
+  .view-toggle{display:flex;justify-content:center}
+  .continent-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}
+  .continent-tile{padding:10px}
+  .ct-name{font-size:0.9rem}
+  .ct-temp{font-size:1rem}
+}
+
+@media (max-width:480px){
+  body{padding:10px}
   .temp{font-size:1.8rem}
+  .hero-temp .temp{font-size:1.8rem}
+  .weather-visual{width:100px;height:80px}
+  .hero-info h2{font-size:1.5rem}
+  .hero-meta{flex-direction:column;gap:8px}
+  .forecast-strip{gap:8px}
+  .day-tile{min-width:90px;padding:10px}
+  .dt-header{font-size:0.8rem}
+  .dt-temp{font-size:0.9rem}
+  .city-form input{font-size:1rem;padding:12px}
+  .city-form button{padding:12px 16px}
+  .city-buttons button{font-size:0.85rem;padding:6px 10px}
+  .controls{gap:8px}
+  .unit-select label{padding:8px 12px;font-size:0.9rem}
+  .status{font-size:0.9rem}
+  .refresh-btn{padding:8px 12px;font-size:0.9rem}
+  .view-panel{margin-top:12px}
+  .days-grid{gap:8px}
+  .month-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+  .continent-grid{grid-template-columns:repeat(auto-fit,minmax(80px,1fr))}
+  .continent-tile{padding:8px}
+  .ct-name{font-size:0.8rem}
+  .ct-temp{font-size:0.9rem}
+  .three-d-btn{padding:8px 14px;font-size:0.9rem}
+}
+
+@media (max-width:360px){
+  body{padding:8px}
+  .temp{font-size:1.6rem}
+  .hero-temp .temp{font-size:1.6rem}
+  .weather-visual{width:80px;height:60px}
+  .hero-info h2{font-size:1.3rem}
+  .hero-meta{font-size:0.9rem}
+  .forecast-strip{gap:6px}
+  .day-tile{min-width:80px;padding:8px}
+  .dt-header{font-size:0.75rem}
+  .dt-icon img{width:30px;height:30px}
+  .dt-temp{font-size:0.85rem}
+  .city-form input{font-size:0.9rem;padding:10px}
+  .city-form button{padding:10px 14px;font-size:0.9rem}
+  .city-buttons button{font-size:0.8rem;padding:5px 8px}
+  .unit-select label{padding:6px 10px;font-size:0.85rem}
+  .status{font-size:0.85rem}
+  .refresh-btn{padding:6px 10px;font-size:0.85rem}
+  .days-grid{gap:6px}
+  .month-grid{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}
+  .continent-grid{grid-template-columns:repeat(auto-fit,minmax(70px,1fr))}
+  .continent-tile{padding:6px}
+  .ct-name{font-size:0.75rem}
+  .ct-temp{font-size:0.85rem}
+  .three-d-btn{padding:6px 12px;font-size:0.85rem}
+  .three-d-inner{font-size:0.85rem}
 }
 
 /* Accent dot used for notifications */
@@ -164,5 +239,41 @@ header h1{margin:0 0 14px;font-weight:600;letter-spacing:0.2px}
 
 /* smooth line draw (stroke animation handled inline) */
 .chart-line{filter:drop-shadow(0 6px 12px rgba(11,35,48,0.45))}
+
+/* 3D dynamic buttons for view toggle */
+.three-d-btn{position:relative;display:inline-block;padding:10px 18px;border-radius:14px;border:none;cursor:pointer;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));color:var(--text);font-weight:700;letter-spacing:0.6px;transform-style:preserve-3d;transition:transform 320ms cubic-bezier(.2,.9,.2,1), box-shadow 320ms ease}
+.three-d-btn:not(.active){box-shadow:0 8px 20px rgba(2,6,23,0.45), inset 0 -6px 0 rgba(0,0,0,0.06);transition:none}
+.three-d-btn.active{transform:translateY(-6px) translateZ(16px) scale(1.02);box-shadow:0 28px 48px rgba(2,6,23,0.6), 0 6px 18px rgba(0,0,0,0.25);background:linear-gradient(180deg,var(--accent), #f2b43b);color:#07182b}
+.three-d-btn:active{transform:translateY(-2px) translateZ(6px)}
+.three-d-btn .three-d-inner{position:relative;display:inline-block;transform:translateZ(24px)}
+
+/* subtle decorative bevel */
+.three-d-btn::before{content:"";position:absolute;left:6px;right:6px;bottom:-8px;height:10px;background:rgba(2,6,23,0.28);filter:blur(10px);border-radius:10px;z-index:-1;transition:opacity 240ms}
+.three-d-btn.active::before{opacity:0.8}
+
+/* days grid for week/month views */
+.days-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-start}
+.days-grid .day-tile{
+  width:100%;
+  box-shadow:0 8px 24px rgba(2,6,23,0.45);
+  transition:transform 280ms ease;
+  min-height:160px; /* keep uniform card height */
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.days-grid .day-tile:hover{transform:translateY(-6px) scale(1.02)}
+.month-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+
+/* wrapper cell used for both flex and grid layouts to keep consistent spacing and sizing */
+.grid-cell{padding:6px;display:flex;align-items:stretch}
+.month-grid .grid-cell{padding:6px}
+.days-grid{gap:12px}
+
+/* make icon area expand and center itself so cards with missing temps still align */
+.dt-icon{flex:1;display:flex;align-items:center;justify-content:center}
+.dt-header{display:flex;flex-direction:column;align-items:center}
+.month-grid .day-tile{height:100%}
+
 
 

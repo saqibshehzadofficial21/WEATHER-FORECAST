@@ -1,0 +1,7 @@
+- [x] Fix weather icons in ForecastStrip to use weathercodes instead of temperature thresholds, ensuring icons remain consistent across temperature units
+- [ ] Add multiple responsive breakpoints (768px, 480px, 360px) in styles.css
+- [ ] Modify hero-grid in WeatherCard to stack vertically on mobile
+- [ ] Make forecast-strip scrollable on small screens
+- [ ] Adjust button layouts in WeatherDashboard for mobile
+- [ ] Refine continent-grid for smaller screens
+- [ ] Test responsiveness across breakpoints
